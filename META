@@ -1,0 +1,4 @@
+name = "memories"
+description = "Forgetful Bloom filter"
+archive(byte) = "memories.cmo"
+archive(native) = "memories.cmx"
