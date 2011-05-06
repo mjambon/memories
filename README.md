@@ -1,6 +1,6 @@
-= Forgetful Bloom filters
+# Forgetful Bloom filters
 
-== Introduction
+## Introduction
 
 From http://en.wikipedia.org/wiki/Bloom_filter :
 
@@ -32,7 +32,7 @@ resemblance with human memories:
   remain unused.
 
 
-== Algorithm
+## Algorithm
 
 We assume a mutable bit array of fixed length m initially set with zeros.
 
@@ -70,13 +70,13 @@ rmax).
 
 Implementation: memories.mli, memories.ml
 
-== Weighted memories
+## Weighted memories
 
 The number k of slots per element does not have to be fixed. We can
 use more slots for elements that we want to remember more durably.
 
 
-== Incremental forgetful Bloom filter
+## Incremental forgetful Bloom filter
 
 This is an extension of the previous algorithm.
 
