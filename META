@@ -1,4 +1,4 @@
 name = "memories"
-description = "Forgetful Bloom filter"
-archive(byte) = "memories.cmo"
-archive(native) = "memories.cmx"
+description = "Forgetful Bloom filters"
+archive(byte) = "memories.cma"
+archive(native) = "memories.cmxa"

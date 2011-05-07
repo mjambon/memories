@@ -11,10 +11,14 @@ val create : int -> t
   (** [create m] creates an IFBF of length [m] bits, with a maximum of [m/2]
       bits being set (to 1) at any given time. *)
 
-val put : t -> int array -> int -> unit
+val put : t -> int array -> int -> int
   (** [put x n a] takes an element hashed into [k] indices given 
       as a sorted array [a] and flips [n] of these bits to 1 in the IFBF [x],
       or as many as possible.
+      The return value is the number of consecutive bits that were set
+      initially.
+      The number of consecutive bits that are set eventually can be obtained
+      by calling [mem].
   *)
 
 val mem : t -> int array -> int

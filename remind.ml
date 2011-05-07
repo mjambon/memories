@@ -96,22 +96,31 @@ let put x a0 k =
   let start = search a x.sweep_pos in
   let remaining = ref k in
   let alen = Array.length a in
-  try
-    for pos = start to start + alen - 1 do
-      if !remaining = 0 then
-        raise Exit
-      else
-        let pos = pos mod alen in
-        let i = a.(pos) in
-        if set_bit x.s i then (
-          decr remaining;
-          if x.bits_set >= x.max_bits_set then
-            clear x
-          else
-            x.bits_set <- x.bits_set + 1
-        )
-    done
-  with Exit -> ()
+  let init_len = ref 0 in
+  let init_phase = ref true in
+  (try
+     for pos = start to start + alen - 1 do
+       if !remaining = 0 then
+         raise Exit
+       else
+         let pos = pos mod alen in
+         let i = a.(pos) in
+         if set_bit x.s i then (
+           init_phase := false;
+           decr remaining;
+           if x.bits_set >= x.max_bits_set then
+             clear x
+           else
+             x.bits_set <- x.bits_set + 1
+         )
+         else
+           if !init_phase then
+             incr init_len
+     done;
+   with Exit -> ()
+  );
+  !init_len
+
 
 let mem x a0 =
   if a0 = [| |] then
